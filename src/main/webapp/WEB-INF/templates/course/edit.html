@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/main-layout}">
+<head>
+    <title>Cập Nhật Khóa Học</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="col-md-8 mx-auto">
+        <div class="card">
+            <div class="card-header bg-warning">
+                <h4 class="mb-0">Chỉnh sửa thông tin lớp học</h4>
+            </div>
+            <div class="card-body">
+                <form th:action="@{/course/edit}" th:object="${course}" method="post">
+                    <div class="mb-3">
+                        <label class="form-label">Mã khóa học</label>
+                        <input type="text" th:field="*{code}" class="form-control" readonly>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Tên khóa học (Không thể sửa)</label>
+                        <input type="text" th:field="*{name}" class="form-control" readonly disabled>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Học phí (VNĐ)</label>
+                        <input type="number" step="0.01" th:field="*{tuitionFee}" class="form-control" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Ngày khai giảng</label>
+                        <input type="date" th:field="*{startDate}" class="form-control" required>
+                    </div>
+
+                    <button type="submit" class="btn btn-success">Lưu thay đổi</button>
+                    <a th:href="@{/course/list}" class="btn btn-secondary">Hủy</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
